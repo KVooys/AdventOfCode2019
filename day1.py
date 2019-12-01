@@ -26,10 +26,11 @@ What is the sum of the fuel requirements for all of the modules on your spacecra
 with open("input/day1.txt") as input_file:
     inp = map(int, input_file.readlines())
 
+# part 1
 # total_fuel = 0
 # for item in inp:
-#     fuel = (item // 3) - 2
-#     total_fuel += fuel
+#     this_fuel = (item // 3) - 2
+#     total_fuel += this_fuel
 
 # print(total_fuel)
 
@@ -51,18 +52,14 @@ What is the sum of the fuel requirements for all of the modules on your spacecra
 
 
 def recursive_fuel_count(fuel, total):
-    global total_all
     current_fuel = (fuel // 3) - 2
     if current_fuel < 0:
-        total_all += total
-        return current_fuel, total
-
+        return total
     else:
         total += current_fuel
-        recursive_fuel_count(current_fuel, total)
+        return recursive_fuel_count(current_fuel, total)
 
 total_all = 0
-sample = 100756
 for item in inp:
-    recursive_fuel_count(item, 0)
+    total_all += (recursive_fuel_count(item, 0))
 print(total_all)
